@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 
@@ -45,8 +44,6 @@ const canvas = document.querySelector('#canvas');
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
 renderer.render(scene, camera);
-
-const controls = new OrbitControls( camera, canvas );
 
 const clock = new THREE.Clock();
 const MAX_SCALE = 1;
