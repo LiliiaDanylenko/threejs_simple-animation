@@ -2,9 +2,6 @@ import * as THREE from 'three';
 
 const scene = new THREE.Scene();
 
-// const axesHelper = new THREE.AxesHelper(3);
-// scene.add(axesHelper);
-
 const sizes = {
   width: window.innerWidth,
   height: window.innerHeight
@@ -14,15 +11,10 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
 camera.position.z = 5;
 scene.add(camera);
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({
-  color: 0x00ff00,
-  wireframe: true
-});
-
 const group = new THREE.Group();
 const meshs = [];
 
+const geometry = new THREE.BoxGeometry(1, 1, 1);
 const colors = [0xb7e8d8, 0xe86344, 0xe8ab9c];
 
 for (let x = -2; x <= 2; x += 2) {
@@ -51,10 +43,6 @@ const MIN_SCALE = 0.5;
 let grow = false;
 
 const animate = () => {
-  // group.rotation.x = elepsedTime;
-  // group.rotation.y = elepsedTime;
-  // group.position.x = Math.cos(elepsedTime);
-  // group.position.y = Math.sin(elepsedTime);
   const delta = clock.getDelta();
 
   meshs.forEach((mesh, index) => {
@@ -74,8 +62,10 @@ const animate = () => {
   group.scale.z += mult * delta * 0.2;
 
   if (grow && group.scale.x >= MAX_SCALE) {
+    group.scale.set(MAX_SCALE, MAX_SCALE, MAX_SCALE);
     grow = false;
   } else if (group.scale.x <= MIN_SCALE) {
+    group.scale.set(MIN_SCALE, MIN_SCALE, MIN_SCALE);
     grow = true;
   }
 
